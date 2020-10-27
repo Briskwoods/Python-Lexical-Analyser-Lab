@@ -5,7 +5,7 @@ import re
 tokens = []
 
 # this is where we define the string that is being analysed.
-source = 'Hello World 1234'.split()
+source = 'Hello ; World 12 34'.split()
 
 # Loop through each source code word
 for word in source:
@@ -21,6 +21,10 @@ for word in source:
     # We then search for any operator
     elif word in '*+-/%=':
         tokens.append(['OPERATOR', word])
+    
+    # We search for any separators
+    elif word in ';':
+        tokens.append(['SEPARATOR', word])
     
     # Finally we look for any integers present and cast them as a number
     elif re.match(".[0-9]", word):
